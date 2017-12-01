@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import TransitionGroup from 'react-transition-group'
 
 export default class ModalVideo extends React.Component {
 
@@ -89,10 +89,12 @@ export default class ModalVideo extends React.Component {
     }
 
     return (
-      <ReactCSSTransitionGroup
-        transitionName={this.props.classNames.modalVideoEffect}
-        transitionEnterTimeout={this.props.animationSpeed}
-        transitionLeaveTimeout={this.props.animationSpeed}
+      <TransitionGroup
+        classNames={this.props.classNames.modalVideoEffect}
+        timeout={{
+            enter: this.props.animationSpeed,
+            exit: this.props.animationSpeed
+        }}
        >
         {(() => {
           if (this.state.isOpen) {
@@ -110,7 +112,7 @@ export default class ModalVideo extends React.Component {
               </div>)
           }
         })()}
-      </ReactCSSTransitionGroup>
+      </TransitionGroup>
     )
   }
 }
